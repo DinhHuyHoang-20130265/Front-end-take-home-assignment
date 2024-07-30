@@ -36,7 +36,16 @@ export const CreateTodoForm = () => {
     })
 
   return (
-    <form className="group flex items-center justify-between rounded-12 border border-gray-200 py-2 pr-4 focus-within:border-gray-400">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        createTodo({
+          body: todoBody,
+        })
+        setTodoBody('')
+      }}
+      className="group flex items-center justify-between rounded-12 border border-gray-200 py-2 pr-4 focus-within:border-gray-400"
+    >
       <label htmlFor={TODO_INPUT_ID} className="sr-only">
         Add todo
       </label>
@@ -55,6 +64,7 @@ export const CreateTodoForm = () => {
       <button
         type="button"
         disabled={isCreatingTodo}
+        className={'rounded-full bg-gray-700 px-5 py-2 text-white'}
         onClick={() => {
           createTodo({
             body: todoBody,
